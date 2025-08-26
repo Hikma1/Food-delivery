@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Hikma Cafe</title>
+    <link rel="stylesheet" href="css/sty.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- CART SUMMARY -->
+    <div class="cart-summary">
+        <h3>Your Cart</h3>
+        <div id="cart-items" class="cart-box"></div>
+        <h4 id="cart-total"></h4>
+    </div>
+
+    <!-- PAYMENT FORM -->
+    <form action="">
+        <div class="row">
+
+            <!-- USER INFO -->
+            <div class="col">
+                <h3>User Info</h3>
+
+                <div class="inputBox">
+                    <span>Full name :</span>
+                    <input type="text" required>
+                </div>
+                <div class="inputBox">
+                    <span>Email :</span>
+                    <input type="email" required>
+                </div>
+                <div class="inputBox">
+                    <span>Address :</span>
+                    <input type="text" required>
+                </div>
+                <div class="inputBox">
+                    <span>City :</span>
+                    <input type="text" required>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>State :</span>
+                        <input type="text" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Zip Code :</span>
+                        <input type="text" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAYMENT INFO -->
+            <div class="col">
+                <h3 class="title">Payment</h3>
+
+                <div class="inputBox">
+                    <span>Choose your options:</span>
+                    <a href="https://www.ethiotelecom.et/telebirr/"><img src="images/tel.jpg" alt="" width="50px" height="65px"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.bankofabyssinia.com/online-support/"><img src="images/abb.png" alt="" width="50px" height="65px"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.cbeib.com.et/ARCIB-4/servlet/BrowserServlet"><img src="images/enb.jpg" alt="" width="50px" height="65px"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.zemenbank.com.et/zemenib/"><img src="images/zmn.jpg" alt="" width="50px" height="65px"></a>&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <div class="inputBox">
+                    <span>Card Name :</span>
+                    <input type="text" required>
+                </div>
+                <div class="inputBox">
+                    <span>Credit Card Number :</span>
+                    <input type="number" required>
+                </div>
+                <div class="inputBox">
+                    <span>Exp Month :</span>
+                    <input type="text" required>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>Exp Year :</span>
+                        <input type="number" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Proceed to Checkout" class="submit-btn">
+    </form>
+</div>    
+
+<!-- CART SCRIPT -->
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function showCart() {
+    let cartContainer = document.getElementById("cart-items");
+    let total = 0;
+    cartContainer.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty</p>";
+    } else {
+        cart.forEach((item, index) => {
+            cartContainer.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.img}" width="40">
+                    <span>${item.name} - $${item.price}</span>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">❌</button>
+                </div>
+            `;
+            total += Number(item.price);
+        });
+    }
+
+    document.getElementById("cart-total").textContent = "Total: $" + total.toFixed(2);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCart();
+}
+
+// Clear cart after checkout
+document.querySelector("form").onsubmit = function(e) {
+    e.preventDefault();
+    if (cart.length === 0) {
+        alert("⚠ Your cart is empty!");
+        return;
+    }
+    alert("✅ Your order has been placed!");
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
+};
+
+document.addEventListener("DOMContentLoaded", showCart);
+</script>
+
+</body>
+</html>
