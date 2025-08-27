@@ -1,3 +1,4 @@
+// Trigger linguist update
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
