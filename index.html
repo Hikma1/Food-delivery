@@ -1,612 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hikma's Resturant</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <a href="pay.html" class="fas fa-shopping-cart"><span id="cart-count">0</span></a>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hik.cafe – Food Delivery</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    
 
-<header>
+  <!-- Header / Navbar -->
+  <header class="header">
+    <a href="#home" class="logo">
+      <i class="fa-solid fa-burger"></i> Hik.cafe
+    </a>
 
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>Hik.cafe</a>
-
-    <nav class="navbar">
-        <a class="active" href="#home">home</a>
-        <a href="#dishes">dishes</a>
-        <a href="#about">about</a>
-        <a href="#menu">menu</a>
-        <a href="#order">order</a>
+    <nav class="navbar" id="navbar">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#order" class="nav-link">Order</a>
     </nav>
 
-    <div class="icons">
-        <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
-        <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
+    <div class="header-icons">
+      <button class="icon-btn" id="cart-btn" aria-label="Open cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge" id="cart-count">0</span>
+      </button>
+      <button class="icon-btn" id="menu-btn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
+  </header>
 
-</header>
-
-
-
-<form action="" id="search-form">
-    <input type="search" placeholder="search here..." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
-    <i class="fas fa-times" id="close"></i>
-</form>
-
-
-<section class="home" id="home">
-
-    <div class="swiper-container home-slider">
-
-        <div class="swiper-wrapper wrapper">
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>our special dish</span>
-                    <h3>hot pizza</h3>
-                    <p>Welcome to Hikma Delivery Website!
-                        <br> You can choose your fav meal and order
-                    </p>
-                    <a href="#" class="btn">order now</a>
-                </div>
-                <div class="image">
-                    <img src="images/home-img-3.png" alt="">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="swiper-pagination"></div>
-
+  <!-- Slide-out Cart -->
+  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="icon-btn" id="close-cart" aria-label="Close cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
-
-</section>
-
-
-
-<section class="dishes" id="dishes">
-
-    <h3 class="sub-heading"> our dishes </h3>
-    <h1 class="heading"> popular dishes </h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-1.png" alt="">
-            <h3>Special Burger</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn" onclick="addToCart('Special Burger', 15.99, 'images/dish-1.png')">add to cart</a>
-
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-2.png" alt="">
-            <h3>Cookies</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$19.98</span>
-            <a href="#" class="btn" onclick="addToCart('Cookies', 19.98, 'images/dish-2.png')">add to cart</a>
-
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-3.png" alt="">
-            <h3>Aurosto</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$8.75</span>
-         <a href="#" class="btn" onclick="addToCart('Aurosto', 8.75, 'images/dish-3.png')">add to cart</a>
-
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-4.png" alt="">
-            <h3>cheese pizza</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$13.99</span>
-            <a href="#" class="btn" onclick="addToCart('Cheese Pizza', 13.99, 'images/dish-4.png')">add to cart</a>
-
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-5.png" alt="">
-            <h3>Icecream</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <span>$17.96</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-6.png" alt="">
-            <h3>Chicken</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$5.09</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
+    <div class="cart-items" id="cart-items">
+      <!-- JS populates items here -->
     </div>
-</section>
-
-
-<section class="about" id="about">
-
-    <h3 class="sub-heading"> about us </h3>
-    <h1 class="heading"> why choose us? </h1>
-
-    <div class="row">
-
-        <div class="image">
-            <img src="images/about-img.png" alt="">
-        </div>
-
-        <div class="content">
-            <h3>best food in the country</h3>
-            <p>Order food with Discounted Deals, Bringing good food into your everyday.</p>
-            <p>And it means this is delicious food you can enjoy everyday from vibrant salads for healthy office lunches
-                to indulgent family-sized pizzas, to fresh sushi for a romantic night in. Whatever you crave, we can help.
-                </p>
-            <div class="icons-container">
-                <div class="icons">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>free delivery</span>
-                </div>
-                <div class="icons">
-                    <i class="fas fa-dollar-sign"></i>
-                    <span>easy payments</span>
-                </div>
-                <div class="icons">
-                    <i class="fas fa-headset"></i>
-                    <span>24/7 service</span>
-                </div>
-            </div>
-            <a href="#" class="btn">learn more</a>
-        </div>
-
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cart-total">$0.00</strong>
+      </div>
+      <button class="btn btn-primary" id="checkout-btn">Checkout</button>
+      <button class="btn btn-ghost" id="clear-cart-btn">Clear Cart</button>
     </div>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
 
-</section>
-
-<section class="menu" id="menu">
-
-    <h3 class="sub-heading"> our menu </h3>
-    <h1 class="heading"> today's speciality </h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Margherita pizza</h3>
-                <p>ID Number: 4356.89</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$12.99</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-2.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Hum Burger</h3>
-                <p>ID Number:789.00</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$12.99</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-3.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Pancake</h3>
-                <p>ID Number:2546.76</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$78.56</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-4.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Liege waffle</h3>
-                <p>ID Number:5673.78</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$8.20</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/l5.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Milkshake</h3>
-                <p>ID Number: 6738.00</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$45.58</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/pepito.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Half Pepito</h3>
-                <p>ID Number:3562.654</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$38.99</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-6.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Cup Cake</h3>
-                <p>ID Number: 783.45</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$87.69</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/asa.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Delicious Fish</h3>
-                <p>ID Number:4574.87</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$34.45</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/mm3.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Icecream</h3>
-                <p>ID Number:876.54</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$15.69</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="images/comb.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>combo</h3>
-                <p>ID Number: 8654.35</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$155.95</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="images/lazzagna.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Lazzagna</h3>
-                <p>ID Number:1237.34</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$72.54</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-5.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Blueberry Cake</h3>
-                <p>ID Number: 6437.45</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">$28.60</span>
-            </div>
-        </div>
-
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="tag">fresh • fast • fun</span>
+        <h1>Colorful bites, delivered bright ✨</h1>
+        <p>Hot pizza, juicy burgers, creamy shakes — order in seconds and enjoy in minutes.</p>
+        <a href="#menu" class="btn btn-primary">Explore Menu</a>
+      </div>
+      <div class="hero-art">
+        <img src="images/home-img-3.png" alt="Special pizza" />
+      </div>
     </div>
+    <!-- Decorative bubbles -->
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+  </section>
 
-</section>
+  <!-- Menu -->
+  <section id="menu" class="section">
+    <h3 class="sub-heading">our menu</h3>
+    <h2 class="heading">today’s specialties</h2>
 
-
-
-
-
-
-
-<section class="order" id="order">
-
-    <h3 class="sub-heading"> order now </h3>
-    <h1 class="heading"> free and fast </h1>
-
-    <form action="">
-
-        <div class="inputBox">
-            <div class="input">
-                <span>Your name</span>
-                <input type="text" placeholder="enter your name">
-            </div>
-            <div class="input">
-                <span>Your number</span>
-                <input type="number" placeholder="enter your number">
-            </div>
+    <div class="menu-grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/dish-1.png" alt="Special Burger"/>
         </div>
-        <div class="inputBox">
-            <div class="input">
-                <span>Your order</span>
-                <input type="text" placeholder="enter food name">
-            </div>
-            <div class="input">
-                <span>Additional food</span>
-                <input type="text" placeholder="extra">
-            </div>
+        <div class="card-body">
+          <h3>Special Burger</h3>
+          <p>Smoky, juicy, stacked with flavor.</p>
+          <div class="card-meta">
+            <span class="price" data-price="15.99">$15.99</span>
+            <button class="btn add-btn" data-name="Special Burger" data-price="15.99" data-img="images/dish-1.png">Add to Cart</button>
+          </div>
         </div>
-        <div class="inputBox">
-            <div class="input">
-                <span>How much</span>
-                <input type="number" placeholder="how many orders">
-            </div>
-            <div class="input">
-                <span>Date and time</span>
-                <input type="datetime-local">
-            </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/dish-2.png" alt="Cookies"/>
         </div>
-        <div class="inputBox">
-            <div class="input">
-                <span>Meal ID</span>
-                <textarea name="" placeholder="Food ID number" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="input">
-                <span>Your Address</span>
-                <textarea name="" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
-            </div>
+        <div class="card-body">
+          <h3>Cookies</h3>
+          <p>Soft baked, choco-chip joy.</p>
+          <div class="card-meta">
+            <span class="price" data-price="19.98">$19.98</span>
+            <button class="btn add-btn" data-name="Cookies" data-price="19.98" data-img="images/dish-2.png">Add to Cart</button>
+          </div>
         </div>
-        <div class="ord">
-        <a href="pay.html">Order Now</a>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/dish-3.png" alt="Aurosto"/>
+        </div>
+        <div class="card-body">
+          <h3>Aurosto</h3>
+          <p>Golden roast, classic comfort.</p>
+          <div class="card-meta">
+            <span class="price" data-price="8.75">$8.75</span>
+            <button class="btn add-btn" data-name="Aurosto" data-price="8.75" data-img="images/dish-3.png">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/dish-4.png" alt="Cheese Pizza"/>
+        </div>
+        <div class="card-body">
+          <h3>Cheese Pizza</h3>
+          <p>Stretchy mozzarella, crisp crust.</p>
+          <div class="card-meta">
+            <span class="price" data-price="13.99">$13.99</span>
+            <button class="btn add-btn" data-name="Cheese Pizza" data-price="13.99" data-img="images/dish-4.png">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/menu-1.jpg" alt="Margherita Pizza"/>
+        </div>
+        <div class="card-body">
+          <h3>Margherita Pizza</h3>
+          <p>Tomato, basil, cheese — the classic trio.</p>
+          <div class="card-meta">
+            <span class="price" data-price="12.99">$12.99</span>
+            <button class="btn add-btn" data-name="Margherita Pizza" data-price="12.99" data-img="images/menu-1.jpg">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/menu-2.jpg" alt="Hum Burger"/>
+        </div>
+        <div class="card-body">
+          <h3>Hum Burger</h3>
+          <p>Thick patty, fresh greens, perfect bite.</p>
+          <div class="card-meta">
+            <span class="price" data-price="12.99">$12.99</span>
+            <button class="btn add-btn" data-name="Hum Burger" data-price="12.99" data-img="images/menu-2.jpg">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/menu-3.jpg" alt="Pancake"/>
+        </div>
+        <div class="card-body">
+          <h3>Pancake</h3>
+          <p>Fluffy stack with syrup dreams.</p>
+          <div class="card-meta">
+            <span class="price" data-price="7.56">$7.56</span>
+            <button class="btn add-btn" data-name="Pancake" data-price="7.56" data-img="images/menu-3.jpg">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card">
+        <div class="card-media">
+          <img src="images/menu-4.jpg" alt="Liege Waffle"/>
+        </div>
+        <div class="card-body">
+          <h3>Liege Waffle</h3>
+          <p>Caramelized pearl sugar crunch.</p>
+          <div class="card-meta">
+            <span class="price" data-price="8.20">$8.20</span>
+            <button class="btn add-btn" data-name="Liege Waffle" data-price="8.20" data-img="images/menu-4.jpg">Add to Cart</button>
+          </div>
+        </div>
+      </article>
     </div>
-    </form>
+  </section>
 
-</section>
+  <!-- About -->
+  <section id="about" class="section alt">
+    <h3 class="sub-heading">about us</h3>
+    <h2 class="heading">why choose Hik.cafe?</h2>
 
+    <div class="about-wrap">
+      <div class="about-media">
+        <img src="images/about-img.png" alt="About Hik.cafe"/>
+      </div>
+      <div class="about-copy">
+        <h3>Best food in the city</h3>
+        <p>Bringing good food to your everyday. From vibrant salads and juicy burgers to creamy shakes and fresh pizza — crave it, click it, love it.</p>
 
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box">
-            <h3>locations</h3>
-            <a href="#">Bahirdar</a>
-            <a href="#">Gonder</a>
-            <a href="#">Addis Abeba</a>
-            <a href="#">Adama</a>
-            <a href="#">Hawssa</a>
+        <div class="badges">
+          <div class="badge"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
+          <div class="badge"><i class="fa-solid fa-wallet"></i> Easy Payments</div>
+          <div class="badge"><i class="fa-solid fa-headset"></i> 24/7 Support</div>
         </div>
-
-        <div class="box">
-            <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">dishes</a>
-            <a href="#">about</a>
-            <a href="#">menu</a>
-            <a href="#">order</a>
-        </div>
-
-        <div class="box">
-            <h3>Contact info</h3>
-            <a href="#">+251-966-303-020</a>
-            <a href="#">+111-222-3333</a>
-            <a href="#">hikma0227@gmail.com</a>
-            <a href="#">hikma@gmail.com</a>
-            <a href="#">Bahirdar, Ethiopia - 400104</a>
-        </div>
-
-        <div class="box">
-            <h3>follow us</h3>
-            <a href="#">facebook</a>
-            <a href="#">twitter</a>
-            <a href="#">instagram</a>
-            <a href="#">linkedin</a>
-        </div>
-
+      </div>
     </div>
+  </section>
 
-    <div class="credit"> copyright @ 2021 <span>Hikma's Delivery</span> </div>
+  <!-- Order / Contact -->
+  <section id="order" class="section">
+    <h3 class="sub-heading">order now</h3>
+    <h2 class="heading">free & fast</h2>
 
-</section>
+    <div class="order-wrap">
+      <form class="order-form" id="order-form">
+        <div class="form-row">
+          <label>your name
+            <input type="text" name="name" placeholder="Enter your name" required/>
+          </label>
+          <label>your number
+            <input type="tel" name="phone" placeholder="Enter your number" required/>
+          </label>
+        </div>
 
->
-<div class="loader-container">
-    <img src="images/fastfood.gif" alt="">
-</div>
+        <div class="form-row">
+          <label>your order
+            <input type="text" name="item" placeholder="Food name" required/>
+          </label>
+          <label>additional food
+            <input type="text" name="extra" placeholder="Extra toppings or sides"/>
+          </label>
+        </div>
 
+        <div class="form-row">
+          <label>how many
+            <input type="number" name="qty" placeholder="Order quantity" min="1" value="1" required/>
+          </label>
+          <label>date & time
+            <input type="datetime-local" name="datetime" required/>
+          </label>
+        </div>
 
+        <label>address
+          <textarea name="address" rows="4" placeholder="Street, city, etc." required></textarea>
+        </label>
 
+        <button type="submit" class="btn btn-primary full">Place Order</button>
+      </form>
 
+      <div class="order-note">
+        <h4>Quick tip</h4>
+        <p>You can also add items from the menu using the “Add to Cart” buttons and check out from the cart panel!</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Locations</h4>
+        <ul>
+          <li>Bahirdar</li>
+          <li>Gondar</li>
+          <li>Addis Abeba</li>
+          <li>Adama</li>
+          <li>Hawassa</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>+251-966-303-020</li>
+          <li>hikma0227@gmail.com</li>
+          <li>Bahirdar, Ethiopia – 400104</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> <strong>Hik.cafe</strong> — Colorful food, delivered bright.</p>
+  </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
-<script src="js/cart.js"></script>
-
-
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
 </body>
 </html>
