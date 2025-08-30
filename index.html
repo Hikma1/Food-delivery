@@ -1,319 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hik.cafe – Food Delivery</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hik.cafe — Food Delivery</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Marisa:wght@400;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css"/>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Header / Navbar -->
-  <header class="header">
-    <a href="#home" class="logo">
-      <i class="fa-solid fa-burger"></i> Hik.cafe
-    </a>
+  <!-- LOADER (full screen) -->
+  <div id="loader" class="loader">
+    <img src="images/fastfood.gif" alt="Loading..." />
+  </div>
 
-    <nav class="navbar" id="navbar">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#menu" class="nav-link">Menu</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#order" class="nav-link">Order</a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="#home" class="brand">
+        <span class="brand-emoji">🍽️</span>
+        <span class="brand-name">Hik.cafe</span>
+      </a>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#order">Order</a>
     </nav>
 
-    <div class="header-icons">
-      <button class="icon-btn" id="cart-btn" aria-label="Open cart">
+    <div class="header-right">
+      <button id="search-toggle" class="icon-btn" aria-label="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+      <button id="cart-open" class="icon-btn" aria-label="cart">
         <i class="fa-solid fa-cart-shopping"></i>
-        <span class="badge" id="cart-count">0</span>
+        <span id="cart-badge" class="badge">0</span>
       </button>
-      <button class="icon-btn" id="menu-btn" aria-label="Open menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+
+      <button id="menu-toggle" class="icon-btn mobile-only" aria-label="menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
-  <!-- Slide-out Cart -->
-  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+  <!-- SEARCH OVERLAY -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-inner">
+      <input id="search-input" type="search" placeholder="Search menu (pizza, burger, pasta)..." />
+      <button id="search-close" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <!-- CART PANEL -->
+  <div id="cart-panel" class="cart-panel" aria-hidden="true">
     <div class="cart-header">
-      <h3>Your Cart</h3>
-      <button class="icon-btn" id="close-cart" aria-label="Close cart">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <h3>🛒 Your Cart</h3>
+      <button id="cart-close" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="cart-items" id="cart-items">
-      <!-- JS populates items here -->
-    </div>
+    <div id="cart-items" class="cart-items"></div>
     <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total:</span>
+      <div class="cart-sum">
+        <span>Total</span>
         <strong id="cart-total">$0.00</strong>
       </div>
-      <button class="btn btn-primary" id="checkout-btn">Checkout</button>
-      <button class="btn btn-ghost" id="clear-cart-btn">Clear Cart</button>
-    </div>
-  </aside>
-  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
-
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <span class="tag">fresh • fast • fun</span>
-        <h1>Colorful bites, delivered bright ✨</h1>
-        <p>Hot pizza, juicy burgers, creamy shakes — order in seconds and enjoy in minutes.</p>
-        <a href="#menu" class="btn btn-primary">Explore Menu</a>
-      </div>
-      <div class="hero-art">
-        <img src="images/home-img-3.png" alt="Special pizza" />
+      <div class="cart-actions">
+        <button id="clear-cart" class="btn ghost">Clear</button>
+        <button id="checkout" class="btn primary">Checkout ✅</button>
       </div>
     </div>
-    <!-- Decorative bubbles -->
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
-  </section>
+  </div>
+  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
 
-  <!-- Menu -->
-  <section id="menu" class="section">
-    <h3 class="sub-heading">our menu</h3>
-    <h2 class="heading">today’s specialties</h2>
-
-    <div class="menu-grid">
-      <!-- Card 1 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/dish-1.png" alt="Special Burger"/>
-        </div>
-        <div class="card-body">
-          <h3>Special Burger</h3>
-          <p>Smoky, juicy, stacked with flavor.</p>
-          <div class="card-meta">
-            <span class="price" data-price="15.99">$15.99</span>
-            <button class="btn add-btn" data-name="Special Burger" data-price="15.99" data-img="images/dish-1.png">Add to Cart</button>
+  <!-- HERO -->
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="tag">fresh • local • fast</div>
+          <h1>Colorful bites, delivered bright ✨</h1>
+          <p class="lead">Hot pizza, juicy burgers, creamy shakes — made fresh and delivered with care.</p>
+          <div class="hero-ctas">
+            <a href="#menu" class="btn primary">Explore Menu 🍕</a>
+            <a href="#order" class="btn ghost">Quick Order 📝</a>
           </div>
         </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/dish-2.png" alt="Cookies"/>
-        </div>
-        <div class="card-body">
-          <h3>Cookies</h3>
-          <p>Soft baked, choco-chip joy.</p>
-          <div class="card-meta">
-            <span class="price" data-price="19.98">$19.98</span>
-            <button class="btn add-btn" data-name="Cookies" data-price="19.98" data-img="images/dish-2.png">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/dish-3.png" alt="Aurosto"/>
-        </div>
-        <div class="card-body">
-          <h3>Aurosto</h3>
-          <p>Golden roast, classic comfort.</p>
-          <div class="card-meta">
-            <span class="price" data-price="8.75">$8.75</span>
-            <button class="btn add-btn" data-name="Aurosto" data-price="8.75" data-img="images/dish-3.png">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/dish-4.png" alt="Cheese Pizza"/>
-        </div>
-        <div class="card-body">
-          <h3>Cheese Pizza</h3>
-          <p>Stretchy mozzarella, crisp crust.</p>
-          <div class="card-meta">
-            <span class="price" data-price="13.99">$13.99</span>
-            <button class="btn add-btn" data-name="Cheese Pizza" data-price="13.99" data-img="images/dish-4.png">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 5 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/menu-1.jpg" alt="Margherita Pizza"/>
-        </div>
-        <div class="card-body">
-          <h3>Margherita Pizza</h3>
-          <p>Tomato, basil, cheese — the classic trio.</p>
-          <div class="card-meta">
-            <span class="price" data-price="12.99">$12.99</span>
-            <button class="btn add-btn" data-name="Margherita Pizza" data-price="12.99" data-img="images/menu-1.jpg">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 6 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/menu-2.jpg" alt="Hum Burger"/>
-        </div>
-        <div class="card-body">
-          <h3>Hum Burger</h3>
-          <p>Thick patty, fresh greens, perfect bite.</p>
-          <div class="card-meta">
-            <span class="price" data-price="12.99">$12.99</span>
-            <button class="btn add-btn" data-name="Hum Burger" data-price="12.99" data-img="images/menu-2.jpg">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 7 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/menu-3.jpg" alt="Pancake"/>
-        </div>
-        <div class="card-body">
-          <h3>Pancake</h3>
-          <p>Fluffy stack with syrup dreams.</p>
-          <div class="card-meta">
-            <span class="price" data-price="7.56">$7.56</span>
-            <button class="btn add-btn" data-name="Pancake" data-price="7.56" data-img="images/menu-3.jpg">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 8 -->
-      <article class="card">
-        <div class="card-media">
-          <img src="images/menu-4.jpg" alt="Liege Waffle"/>
-        </div>
-        <div class="card-body">
-          <h3>Liege Waffle</h3>
-          <p>Caramelized pearl sugar crunch.</p>
-          <div class="card-meta">
-            <span class="price" data-price="8.20">$8.20</span>
-            <button class="btn add-btn" data-name="Liege Waffle" data-price="8.20" data-img="images/menu-4.jpg">Add to Cart</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section alt">
-    <h3 class="sub-heading">about us</h3>
-    <h2 class="heading">why choose Hik.cafe?</h2>
-
-    <div class="about-wrap">
-      <div class="about-media">
-        <img src="images/about-img.png" alt="About Hik.cafe"/>
-      </div>
-      <div class="about-copy">
-        <h3>Best food in the city</h3>
-        <p>Bringing good food to your everyday. From vibrant salads and juicy burgers to creamy shakes and fresh pizza — crave it, click it, love it.</p>
-
-        <div class="badges">
-          <div class="badge"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
-          <div class="badge"><i class="fa-solid fa-wallet"></i> Easy Payments</div>
-          <div class="badge"><i class="fa-solid fa-headset"></i> 24/7 Support</div>
+        <div class="hero-art">
+          <img src="images/home-img-3.png" alt="Special dish" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Order / Contact -->
-  <section id="order" class="section">
-    <h3 class="sub-heading">order now</h3>
-    <h2 class="heading">free & fast</h2>
-
-    <div class="order-wrap">
-      <form class="order-form" id="order-form">
-        <div class="form-row">
-          <label>your name
-            <input type="text" name="name" placeholder="Enter your name" required/>
-          </label>
-          <label>your number
-            <input type="tel" name="phone" placeholder="Enter your number" required/>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>your order
-            <input type="text" name="item" placeholder="Food name" required/>
-          </label>
-          <label>additional food
-            <input type="text" name="extra" placeholder="Extra toppings or sides"/>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>how many
-            <input type="number" name="qty" placeholder="Order quantity" min="1" value="1" required/>
-          </label>
-          <label>date & time
-            <input type="datetime-local" name="datetime" required/>
-          </label>
-        </div>
-
-        <label>address
-          <textarea name="address" rows="4" placeholder="Street, city, etc." required></textarea>
-        </label>
-
-        <button type="submit" class="btn btn-primary full">Place Order</button>
-      </form>
-
-      <div class="order-note">
-        <h4>Quick tip</h4>
-        <p>You can also add items from the menu using the “Add to Cart” buttons and check out from the cart panel!</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div>
-        <h4>Locations</h4>
-        <ul>
-          <li>Bahirdar</li>
-          <li>Gondar</li>
-          <li>Addis Abeba</li>
-          <li>Adama</li>
-          <li>Hawassa</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li>+251-966-303-020</li>
-          <li>hikma0227@gmail.com</li>
-          <li>Bahirdar, Ethiopia – 400104</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <div class="socials">
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+    <!-- MENU -->
+    <section id="menu" class="section">
+      <div class="section-head">
+        <h2 class="section-title">Today’s Specials</h2>
+        <div class="controls">
+          <div class="filter">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="pizza">Pizza</button>
+            <button class="chip" data-filter="burger">Burger</button>
+            <button class="chip" data-filter="dessert">Dessert</button>
+            <button class="chip" data-filter="drinks">Drinks</button>
+          </div>
+          <input id="menu-search" class="menu-search" placeholder="Search menu..." />
         </div>
       </div>
-    </div>
-    <p class="copy">© <span id="year"></span> <strong>Hik.cafe</strong> — Colorful food, delivered bright.</p>
-  </footer>
 
-  <!-- Scripts -->
+      <div id="menu-grid" class="menu-grid">
+        <!-- Cards: data-category attribute used for filter -->
+        <article class="card" data-category="burger">
+          <div class="card-media"><img src="images/dish-1.png" alt="Special Burger" /></div>
+          <div class="card-body">
+            <h3>Special Burger 🍔</h3>
+            <p class="muted">Smoky, juicy, stacked with flavor.</p>
+            <div class="card-footer">
+              <div class="price">$15.99</div>
+              <button class="btn add" data-name="Special Burger" data-price="15.99" data-img="images/dish-1.png">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-category="dessert">
+          <div class="card-media"><img src="images/dish-2.png" alt="Cookies" /></div>
+          <div class="card-body">
+            <h3>Cookies 🍪</h3>
+            <p class="muted">Freshly baked, gooey centers.</p>
+            <div class="card-footer">
+              <div class="price">$19.98</div>
+              <button class="btn add" data-name="Cookies" data-price="19.98" data-img="images/dish-2.png">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-category="drinks">
+          <div class="card-media"><img src="images/dish-3.png" alt="Aurosto" /></div>
+          <div class="card-body">
+            <h3>Aurosto ☕</h3>
+            <p class="muted">Rich roasted flavor.</p>
+            <div class="card-footer">
+              <div class="price">$8.75</div>
+              <button class="btn add" data-name="Aurosto" data-price="8.75" data-img="images/dish-3.png">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-category="pizza">
+          <div class="card-media"><img src="images/dish-4.png" alt="Cheese Pizza" /></div>
+          <div class="card-body">
+            <h3>Cheese Pizza 🍕</h3>
+            <p class="muted">Classic mozzarella & crust.</p>
+            <div class="card-footer">
+              <div class="price">$13.99</div>
+              <button class="btn add" data-name="Cheese Pizza" data-price="13.99" data-img="images/dish-4.png">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- More cards (use existing images) -->
+        <article class="card" data-category="pizza">
+          <div class="card-media"><img src="images/menu-1.jpg" alt="Margherita" /></div>
+          <div class="card-body">
+            <h3>Margherita 🍕</h3>
+            <p class="muted">Tomato, basil & cheese.</p>
+            <div class="card-footer">
+              <div class="price">$12.99</div>
+              <button class="btn add" data-name="Margherita" data-price="12.99" data-img="images/menu-1.jpg">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-category="dessert">
+          <div class="card-media"><img src="images/mm3.jpg" alt="Icecream" /></div>
+          <div class="card-body">
+            <h3>Icecream 🍨</h3>
+            <p class="muted">Creamy & cold.</p>
+            <div class="card-footer">
+              <div class="price">$15.69</div>
+              <button class="btn add" data-name="Icecream" data-price="15.69" data-img="images/mm3.jpg">Add 🛒</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section dark">
+      <div class="about-inner">
+        <div class="about-media"><img src="images/about-img.png" alt="About us" /></div>
+        <div class="about-copy">
+          <h2>Why Hik.cafe? 🌿</h2>
+          <p>We focus on fresh ingredients, elegant presentation, and fast delivery. Enjoy curated meals crafted by local chefs.</p>
+          <div class="badges">
+            <span class="badge">🚚 Free Delivery</span>
+            <span class="badge">💳 Easy Payments</span>
+            <span class="badge">⏱️ Fast Service</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order" class="section">
+      <h2 class="section-title">Quick Order 📝</h2>
+      <div class="order-wrap">
+        <form id="order-form" class="order-form">
+          <div class="row">
+            <label>
+              Your name
+              <input name="name" required placeholder="Full name" />
+            </label>
+            <label>
+              Phone
+              <input name="phone" required placeholder="+251 9xx xxx xxx" />
+            </label>
+            <label>
+              Address
+              <input name="address" required placeholder="Deliver to..." />
+            </label>
+            <label>
+              Notes
+              <input name="notes" placeholder="Extra instructions (optional)" />
+            </label>
+          </div>
+
+          <div class="order-actions">
+            <button type="submit" class="btn primary">Place Order ✅</button>
+            <button type="button" id="order-cart" class="btn ghost">Order From Cart 🛒</button>
+          </div>
+        </form>
+
+        <aside class="order-info">
+          <h4>Cart Preview</h4>
+          <div id="mini-cart" class="mini-cart"></div>
+          <div class="mini-total">Total: <strong id="mini-total">$0.00</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Hik.cafe — Fresh meals, happy hearts ❤️</div>
+    </footer>
+  </main>
+
+  <!-- JavaScript -->
   <script src="js/script.js"></script>
 </body>
 </html>
